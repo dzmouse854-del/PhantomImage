@@ -1,4 +1,3 @@
-// نرسل التقرير الكامل إلى تلغرام ثم نسجل في الـLogs
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).end();
 
@@ -15,7 +14,7 @@ export default async function handler(req, res) {
 ━━━━━━━━━━━━━━━━━━━━
   `;
 
-  // ✅ الرابط الصحيح بدون مسافات أو أخطاء
+  // ✅ إرسال إلى القناة باستخدام Channel ID
   const url = `https://api.telegram.org/bot${process.env.BOT_TOKEN}/sendMessage`;
 
   try {
